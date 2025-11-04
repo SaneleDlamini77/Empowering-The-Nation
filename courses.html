@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+    }
+
+    /* Header */
+    header {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover,
+    nav a.active {
+      text-decoration: underline;
+    }
+
+    /* Main */
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2em;
+      color: #000;
+      margin-bottom: 30px;
+    }
+
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .course-card {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background-color: #fff;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .course-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .course-card-content {
+      padding: 15px 20px;
+    }
+
+    .course-card h3 {
+      color: #333;
+      margin-top: 0;
+    }
+
+    .course-card p {
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #000;
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-align: left;
+      position: relative;
+    }
+
+    .close-btn {
+      color: #333;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Empowering the Nation Logo" />
+      <span>Empowering the Nation</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="courses.html" class="active">Courses Info</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="apply.html">Apply</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="section-title">Our Courses</h1>
+    <div class="course-list">
+      <div class="course-card" onclick="openModal('First Aid', '6-Month Program — R6000', 'Learn essential first aid awareness and life support techniques. Includes CPR, wound management, emergency scene management, and practical simulations.', 'images/firstaid.png')">
+        <img src="images/first aid.png" alt="First Aid Course" />
+        <div class="course-card-content">
+          <h3>First Aid</h3>
+          <p>6-Month Program — R6000</p>
+          <p>6-Weeks Program — R2000</p>
+          <p>Learn essential first aid and emergency skills.</p>
+        </div>
+      </div>
+      <div class="course-card" onclick="openModal('Sewing', '6-Week Program — R1500', 'Master alterations, pattern cutting, and garment repairs. Learn hand stitching, machine operation, and design basics to create custom clothing.', 'images/sewing.png')">
+        <img src="images/sewing.png" alt="Sewing Course" />
+        <div class="course-card-content">
+          <h3>Sewing</h3>
+          <p>6-Month Program — R3500</p>
+          <p>6-Weeks Program — R1500</p>
+          <p>Master alterations and tailoring for garments.</p>
+        </div>
+      </div>
+      <div class="course-card" onclick="openModal('Cooking', '6-Month Program — R7500', 'Learn to prepare healthy meals, bake pastries, and explore global cuisines. Includes kitchen safety, hygiene, and plating presentation.', 'images/cooking.png')">
+        <img src="images/cooking.png" alt="Cooking Course" />
+        <div class="course-card-content">
+          <h3>Cooking</h3>
+          <p>6-Month Program — R7500</p>
+          <p>Prepare nutritious meals with diverse cuisines.</p>
+        </div>
+      </div>
+      <div class="course-card" onclick="openModal('Child Minding', '6-Week Program — R2000', 'Learn child care essentials, early development activities, safety procedures, and nutritional basics. Ideal for aspiring nannies or caregivers.', 'images/childminding.png')">
+        <img src="images/childminding.png" alt="Child Minding Course" />
+        <div class="course-card-content">
+          <h3>Child Minding</h3>
+          <p>6-Week Program — R2000</p>
+          <p>Learn child care and developmental activities.</p>
+        </div>
+      </div>
+      <div class="course-card" onclick="openModal('Landscaping', '6-Month Program — R4000', 'Learn landscape design, soil management, irrigation, and plant care. Gain practical skills to start your own gardening business.', 'images/landscaping.png')">
+        <img src="images/landscaping.png" alt="Landscaping Course" />
+        <div class="course-card-content">
+          <h3>Landscaping</h3>
+          <p>6-Month Program — R4000</p>
+          <p>6-Weeks Program — R1500</p>
+          <p>Design and maintain beautiful gardens.</p>
+        </div>
+      </div>
+      <div class="course-card" onclick="openModal('Garden Maintenance', '6-Month Program — R3000', 'Covers plant propagation, pest control, pruning, and garden planning. Great for homeowners or aspiring garden service providers.', 'images/gardening.png')">
+        <img src="images/gardening.png" alt="Garden Maintenance Course" />
+        <div class="course-card-content">
+          <h3>Garden Maintenance</h3>
+          <p>6-Month Program — R3000</p>
+          <p>6-Weeks Program — R1500</p>
+          <p>Learn essential garden care techniques.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Empowering the Nation. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="courseModal" class="modal" tabindex="0">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDuration"></p>
+      <p id="modalDescription"></p>
+      <img id="modalImage" src="" alt="" style="width:100%; border-radius:10px; margin-top:15px;"/>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title, duration, description, image) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDuration').textContent = duration;
+      document.getElementById('modalDescription').textContent = description;
+      document.getElementById('modalImage').src = image;
+      document.getElementById('courseModal').style.display = 'block';
+      document.getElementById('courseModal').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('courseModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('courseModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

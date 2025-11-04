@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Fee Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header, footer { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
+    header a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; }
+    header a.active { text-decoration: underline; }
+    .logo img { height: 40px; vertical-align: middle; margin-right: 10px; }
+    main { padding: 20px; max-width: 650px; margin: auto; }
+    .form label { display: block; margin: 10px 0; }
+    .btn { margin-top: 10px; padding: 10px 15px; cursor: pointer; background: #007BFF; color: white; border: none; border-radius: 5px; font-weight: bold; }
+    .btn:hover { background: #0056b3; }
+    .result { margin-top: 20px; font-weight: bold; }
+    #note { color: darkred; margin-top: 10px; }
+  </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Empowering the Nation Logo">
+      <span>Empowering the Nation</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses Info</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="apply.html" class="active">Apply</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Course Fee Calculator</h1>
+    <form id="calc-form" class="form">
+      <h2>Select Courses and Duration</h2>
+      <label><input type="checkbox" name="course" data-course="First Aid" data-duration="6months" value="6000"> First Aid (6-Month) — R6000</label>
+      <label><input type="checkbox" name="course" data-course="First Aid" data-duration="6weeks" value="2000"> First Aid (6-Weeks) — R2000</label>
+      <label><input type="checkbox" name="course" data-course="Sewing" data-duration="6months" value="3500"> Sewing (6-Month) — R3500</label>
+      <label><input type="checkbox" name="course" data-course="Sewing" data-duration="6weeks" value="1500"> Sewing (6-Weeks) — R1500</label>
+      <label><input type="checkbox" name="course" data-course="Landscaping" data-duration="6months" value="4000"> Landscaping (6-Month) — R4000</label>
+      <label><input type="checkbox" name="course" data-course="Landscaping" data-duration="6weeks" value="1500"> Landscaping (6-Weeks) — R1500</label>
+      <label><input type="checkbox" name="course" data-course="Child Minding" data-duration="6months" value="4500"> Child Minding (6-Month) — R4500</label>
+      <label><input type="checkbox" name="course" data-course="Child Minding" data-duration="6weeks" value="2000"> Child Minding (6-Weeks) — R2000</label>
+      <label><input type="checkbox" name="course" data-course="Cooking" data-duration="6months" value="7500"> Cooking (6-Month) — R7500</label>
+      <label><input type="checkbox" name="course" data-course="Cooking" data-duration="6weeks" value="3500"> Cooking (6-Weeks) — R3500</label>
+      <label><input type="checkbox" name="course" data-course="Garden Maintenance" data-duration="6months" value="3000"> Garden Maintenance (6-Month) — R3000</label>
+      <label><input type="checkbox" name="course" data-course="Garden Maintenance" data-duration="6weeks" value="1500"> Garden Maintenance (6-Weeks) — R1500</label>
+      <div id="note"></div>
+      <button type="button" id="calculate" class="btn">Calculate Total Fee</button>
+    </form>
+    <div id="result" class="result"></div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Empowering the Nation. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const checkboxes = document.querySelectorAll('input[name="course"]');
+      const note = document.getElementById('note');
+      const result = document.getElementById('result');
+      const calculateBtn = document.getElementById('calculate');
+
+      // Prevent selecting both durations for the same course
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', function() {
+          const sameCourseChecks = Array.from(checkboxes).filter(
+            el => el.dataset.course === cb.dataset.course
+          );
+          if (cb.checked) {
+            sameCourseChecks.forEach(el => {
+              if (el !== cb) el.checked = false;
+            });
+          }
+        });
+      });
+
+      calculateBtn.addEventListener('click', function() {
+        let checked = Array.from(checkboxes).filter(cb => cb.checked);
+        let total = checked.reduce((sum, cb) => sum + parseInt(cb.value), 0);
+
+        let discountPct = 0;
+        if (checked.length === 2) {
+          discountPct = 0.05;
+        } else if (checked.length === 3) {
+          discountPct = 0.10;
+        } else if (checked.length > 3) {
+          discountPct = 0.15;
+        }
+
+        let discountAmount = total * discountPct;
+        let totalAfterDiscount = total - discountAmount;
+
+        let detail = "";
+        if (checked.length === 0) {
+          result.textContent = "Please select at least one course.";
+          return;
+        } else if (checked.length === 1) {
+          detail = "No discount applied.";
+        } else if (checked.length === 2) {
+          detail = "5% discount applied.";
+        } else if (checked.length === 3) {
+          detail = "10% discount applied.";
+        } else if (checked.length > 3) {
+          detail = "15% discount applied.";
+        }
+
+        result.innerHTML = 
+          `Number of courses: ${checked.length}<br>
+           Total before discount: R${total.toLocaleString()}<br>
+           ${detail}<br>
+           Total after discount: R${totalAfterDiscount.toLocaleString(undefined,{minimumFractionDigits:2})}`;
+      });
+    });
+  </script>
+</body>
+</html>

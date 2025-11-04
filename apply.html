@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for a Course</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    header {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 36px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.25em;
+      font-weight: 600;
+      gap: 12px;
+    }
+    .logo img {
+      height: 44px;
+      width: auto;
+      margin-right: 6px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 22px;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a.active, nav a:hover {
+      color: #33aaff;
+      text-decoration: underline;
+    }
+
+    main {
+      background: #fff;
+      max-width: 500px;
+      margin: 40px auto 30px auto;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.07);
+      border-radius: 12px;
+      padding: 42px 36px 32px 36px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.1em;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 26px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 3px;
+      color: #444;
+    }
+
+    .courses-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .courses-list label {
+      font-weight: normal;
+      background: #f3f5fa;
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .courses-list input[type="checkbox"] {
+      accent-color: #007BFF;
+      margin-right: 7px;
+    }
+    .courses-list label:hover {
+      background: #e9eef6;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], select {
+      padding: 10px 12px;
+      border: 1px solid #cbd0d4;
+      border-radius: 5px;
+      font-size: 1em;
+      background: #fafcff;
+      transition: border 0.2s;
+      margin-bottom: 2px;
+    }
+    input[type="text"]:focus, input[type="email"]:focus,
+    input[type="tel"]:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    .btn {
+      padding: 12px 0;
+      background: #007BFF;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.08em;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.22s;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .success-message {
+      padding: 15px;
+      background: #e1f9ea;
+      color: #127c38;
+      border-radius: 7px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.98em;
+    }
+
+    @media (max-width: 650px) {
+      main {
+        padding: 22px 7vw 18px 7vw;
+        margin: 24px 0 22px 0;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px 13px;
+      }
+      nav a {
+        margin: 0 12px 0 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Empowering the Nation Logo"/>
+      <span>Empowering the Nation</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="courseinfo.html">Courses Info</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="apply.html" class="active">Apply</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="section-title">Apply for a Course</h1>
+    <form id="apply-form" autocomplete="off">
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="e.g. your@email.com">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required placeholder="e.g. 012 345 6789">
+      </div>
+
+      <div class="form-group">
+        <label for="duration">Course Duration</label>
+        <select id="duration" name="duration" required>
+          <option value="">Select duration</option>
+          <option value="Six Months">Six Months</option>
+          <option value="Six Weeks">Six Weeks</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Choose Course(s) <span style="color:#007BFF;">(You may select more than one)</span>:</label>
+        <div class="courses-list">
+          <label><input type="checkbox" name="courses" value="First Aid">First Aid (R6000)</label>
+          <label><input type="checkbox" name="courses" value="Sewing">Sewing (R1500)</label>
+          <label><input type="checkbox" name="courses" value="Landscaping">Landscaping (R4000)</label>
+          <label><input type="checkbox" name="courses" value="Child Minding">Child Minding (R2000)</label>
+          <label><input type="checkbox" name="courses" value="Cooking">Cooking (R7500)</label>
+          <label><input type="checkbox" name="courses" value="Garden Maintenance">Garden Maintenance (R3000)</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Submit Application</button>
+      <div class="success-message" id="successMessage">Your application was submitted successfully! We will contact you soon.</div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Empowering the Nation. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('apply-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('successMessage').style.display = 'block';
+      this.reset();
+      setTimeout(function(){
+        document.getElementById('successMessage').style.display = 'none';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
